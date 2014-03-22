@@ -3,10 +3,10 @@ package ohtu.verkkokauppa;
 public class Pankki implements IPankki {
 
     
-    private Kirjanpito kirjanpito;
+    private IKirjanpito kirjanpito;
 
-    public Pankki() {
-        kirjanpito = Kirjanpito.getInstance();
+    public Pankki(IKirjanpito kir) {
+        kirjanpito = kir;
     }
 
     @Override
