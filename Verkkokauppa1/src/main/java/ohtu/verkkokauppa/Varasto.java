@@ -5,11 +5,11 @@ import java.util.*;
 public class Varasto implements IVarasto {
 
    
-    private Kirjanpito kirjanpito;
+    private IKirjanpito kirjanpito;
     private HashMap<Tuote, Integer> saldot;
 
-    public Varasto() {
-        kirjanpito = Kirjanpito.getInstance();
+    public Varasto(IKirjanpito kir) {
+        kirjanpito = kir;
         saldot = new HashMap<Tuote, Integer>();
         alustaTuotteet();
     }
