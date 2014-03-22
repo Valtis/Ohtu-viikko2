@@ -10,9 +10,9 @@ public class Main {
 
     public static void main(String[] args) {
         Kauppa kauppa = new Kauppa(
-                Varasto.getInstance(), 
-                Pankki.getInstance(), 
-                Viitegeneraattori.getInstance());
+                new Varasto(new Kirjanpito()), 
+                new Pankki(new Kirjanpito()), 
+                new Viitegeneraattori());
 
         // kauppa hoitaa yhden asiakkaan kerrallaan seuraavaan tapaan:
         kauppa.aloitaAsiointi();
