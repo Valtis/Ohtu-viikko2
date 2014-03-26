@@ -39,4 +39,44 @@ public class Kauppa {
         return pankki.tilisiirto(nimi, viite, tiliNumero, kaupanTili, summa);
     }
 
+	// checkstyle-testausta
+	public void rikotaanSaannot(int arvo1, int arvo2) {
+		if (arvo1 > 0) {
+			if (arvo2 > 5) {
+				arvo2--;
+				if (arvo2 < 7) {
+					arvo2 *= 5;
+				}
+			}
+			else {
+				arvo2++;
+			}
+		}
+		
+		for (int i = 0; i < 10; ++i) {
+			for (int i = 0; i < 5; ++j) {
+				arvo1 += arvo2;
+			}
+		}
+	}
+	
+	public int copyPaste(int arvo1, int arvo2) {
+		if (arvo1 > 0) {
+			if (arvo2 > 5) {
+				arvo2--;
+				if (arvo2 < 7) {
+					arvo2 *= 5;
+				}
+			}
+			else {
+				arvo2++;
+			}
+		}
+		
+		return arvo1 + arvo2;
+	}
+	
+	
+	
+	
 }
