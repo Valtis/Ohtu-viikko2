@@ -43,22 +43,12 @@ public class AuthenticationService {
     // I'll use regular expressions." Now they have two problems."
     private boolean invalid(String username, String password) {
         
-        if (username.length() < 3) {
+        if (username.length() < 3 || !hasOnlyLowerCaseLetters(username)) {
             return true;
         }
-        
-        if (!hasOnlyLowerCaseLetters(username))  {
+        else if (password.length() < 8 || !hasNumberOrSpecialCharacter(password)) {
             return true;
-        }
-        
-        if (password.length() < 8) {
-            return true;
-        }
-        
-        if (!hasNumberOrSpecialCharacter(password)) {
-            return true;
-        }
-              
+        } 
         return false;
     }
 
