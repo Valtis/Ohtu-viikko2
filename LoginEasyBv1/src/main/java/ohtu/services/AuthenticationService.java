@@ -47,7 +47,7 @@ public class AuthenticationService {
             return true;
         }
         
-        if (!username.matches("[a-z]*"))  {
+        if (!hasOnlyLowerCaseLetters(username))  {
             return true;
         }
         
@@ -55,10 +55,18 @@ public class AuthenticationService {
             return true;
         }
         
-        if (!(password.matches(".*\\d.*") || password.matches(".*\\W.*"))) {
+        if (!hasNumberOrSpecialCharacter(password)) {
             return true;
         }
               
         return false;
+    }
+
+    private boolean hasOnlyLowerCaseLetters(String username) {
+        return username.matches("[a-z]*");
+    }
+
+    private boolean hasNumberOrSpecialCharacter(String password) {
+        return password.matches(".*\\d.*") || password.matches(".*\\W.*");
     }
 }
