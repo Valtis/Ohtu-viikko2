@@ -38,9 +38,27 @@ public class AuthenticationService {
         return true;
     }
 
+    
+    // "Some people, when confronted with a problem, think "I know, 
+    // I'll use regular expressions." Now they have two problems."
     private boolean invalid(String username, String password) {
-        // validity check of username and password
-
+        
+        if (username.length() < 3) {
+            return true;
+        }
+        
+        if (!username.matches("[a-z]*"))  {
+            return true;
+        }
+        
+        if (password.length() < 8) {
+            return true;
+        }
+        
+        if (!(password.matches(".*\\d.*") || password.matches(".*\\W.*"))) {
+            return true;
+        }
+              
         return false;
     }
 }
