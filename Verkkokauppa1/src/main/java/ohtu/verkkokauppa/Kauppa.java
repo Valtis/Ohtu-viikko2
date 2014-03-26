@@ -38,7 +38,7 @@ public class Kauppa {
         
         return pankki.tilisiirto(nimi, viite, tiliNumero, kaupanTili, summa);
     }
-
+/*
 	// checkstyle-testausta
 	public void rikotaanSaannot(int arvo1, int arvo2) {
 		if (arvo1 > 0) {
@@ -54,7 +54,7 @@ public class Kauppa {
 		}
 		
 		for (int i = 0; i < 10; ++i) {
-			for (int i = 0; i < 5; ++j) {
+			for (int j = 0; j < 5; ++j) {
 				arvo1 += arvo2;
 			}
 		}
@@ -76,7 +76,7 @@ public class Kauppa {
 		return arvo1 + arvo2;
 	}
 	
-	
+	*/
 	
 	
 }
