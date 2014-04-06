@@ -48,7 +48,6 @@ public class KauppaTest {
     @Test
     public void ostoksenPaatyttyaPankinMetodiaTilisiirtoKutsutaan() {
 
-    
         k.aloitaAsiointi();
         k.lisaaKoriin(1);
         k.tilimaksu("pekka", "12345");
@@ -76,7 +75,7 @@ public class KauppaTest {
     on ja suoritetaan ostos. varmistettava että kutsutaan pankin metodia 
     tilisiirto oikealla asiakkaalla, tilinumerolla ja summalla*/
     @Test
-    public void ostoksenPaatyttyaKunOstetaanKaksiPankinMetodiaTilisiirtoKutsutaanOikeallaParametreilla() {
+    public void ostoksenPaatyttyaKunOstetaanKaksiEriTuotettaPankinMetodiaTilisiirtoKutsutaanOikeallaParametreilla() {
         // tehdään ostokset
         k.aloitaAsiointi();
         k.lisaaKoriin(1);
@@ -90,5 +89,13 @@ public class KauppaTest {
     varastossa tarpeeksi ja suoritetaan ostos. varmistettava että kutsutaan 
     pankin metodia tilisiirto oikealla asiakkaalla, tilinumerolla ja summalla
     */
+    
+    @Test public void pankinMetodiaKutsutaanOikeillaParametreillaKunOstetaanKaksiSamaaTuotetta() {
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);
+        k.lisaaKoriin(1);
+        k.tilimaksu("pekka", "12345");
+        verify(pankki).tilisiirto("pekka", 42, "12345", "33333-44455", 10);
+    }
     
 }
