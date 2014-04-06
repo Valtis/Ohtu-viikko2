@@ -150,6 +150,23 @@ public class KauppaTest {
         verify(viite, times(4)).uusi();
     }
     
+    @Test
+    public void koristaPoistoKutsuuVarastonHaeTuoteMetodiaOikeallaParametrilla() {
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);
+        
+        k.poistaKorista(1);
+        verify(varasto, times(2)).haeTuote(1);
+    }
+    
+    @Test
+    public void koristaPoistoKutsuuVarastonPalautaMetodiaOikeallaParametrilla() {
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);
+        k.poistaKorista(1);
+        Tuote t = varasto.haeTuote(1);
+        verify(varasto).palautaVarastoon(t);
+    }
 }
 
     
