@@ -34,9 +34,12 @@ public class KauppaTest {
         varasto = mock(Varasto.class);
         when(varasto.saldo(1)).thenReturn(10); 
         when(varasto.saldo(2)).thenReturn(10); 
+        when(varasto.saldo(3)).thenReturn(0);
         
         when(varasto.haeTuote(1)).thenReturn(new Tuote(1, "maito", 5));
         when(varasto.haeTuote(2)).thenReturn(new Tuote(2, "tomaatti", 3));
+        when(varasto.haeTuote(3)).thenReturn(new Tuote(3, "kallis porkkana", 15));
+        
         k = new Kauppa(varasto, pankki, viite);   
     }
     
@@ -96,6 +99,17 @@ public class KauppaTest {
         k.lisaaKoriin(1);
         k.tilimaksu("pekka", "12345");
         verify(pankki).tilisiirto("pekka", 42, "12345", "33333-44455", 10);
+    }
+     /* aloitetaan asiointi, koriin lisätään tuote jota on varastossa tarpeeksi 
+    ja tuote joka on loppu ja suoritetaan ostos. varmistettava että kutsutaan 
+    pankin metodia tilisiirto oikealla asiakkaalla, tilinumerolla ja summalla */
+    @Test
+    public void tiliSiirtoOikeinKunOstetaanTuoteJotaOnJaTuoteJokaOnLoppu() {
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);
+        k.lisaaKoriin(3);
+        k.tilimaksu("pekka", "12345");
+        verify(pankki).tilisiirto("pekka", 42, "12345", "33333-44455", 5);
     }
     
 }
