@@ -126,5 +126,30 @@ public class KauppaTest {
         k.tilimaksu("pekka", "12345");
         verify(pankki).tilisiirto("pekka", 42, "12345", "33333-44455", 0);
     }
+    /*
+    varmistettava, että kauppa pyytää uuden viitenumeron jokaiselle 
+    maksutapahtumalle, katso tarvittaessa apua projektin MockitoDemo testeistä!
+    */
+    
+    @Test
+    public void kauppaPyytaaJokaiselleTapahtumalleUuudenViitenumeron() {
+        k.aloitaAsiointi();
+        k.tilimaksu("pekka", "12345");
+        verify(viite, times(1)).uusi();
+        
+        k.aloitaAsiointi();
+        k.tilimaksu("pekka", "12345");
+        verify(viite, times(2)).uusi();
+        
+        k.aloitaAsiointi();
+        k.tilimaksu("pekka", "12345");
+        verify(viite, times(3)).uusi();
+        
+        k.aloitaAsiointi();
+        k.tilimaksu("pekka", "12345");
+        verify(viite, times(4)).uusi();
+    }
     
 }
+
+    
