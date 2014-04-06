@@ -23,7 +23,7 @@ public class KauppaTest {
         kauppa.maksa("1111");
 
         // varmistetaan pankilta että sen metodia maksa on kutsuttu
-        verify(mockPankki).maksa(anyString(), 12345, anyInt());
+        verify(mockPankki).maksa(anyString(), anyInt(), anyInt());
         // kutsussa olevein parametrien arvoilla ei testissä ole väliä
         // kokeile muuttaa koodia siten että testi menee rikki!        
     }
@@ -41,7 +41,7 @@ public class KauppaTest {
         kauppa.maksa("1111");
 
         // tällä kertaa vaaditaan että ensimmäisen parametrin arvo on oikea
-        verify(mockPankki).maksa(eq("11131"), anyInt(), anyInt());
+        verify(mockPankki).maksa(eq("1111"), anyInt(), anyInt());
         // kokeile jälleen rikkoa koodi
     }
 
@@ -58,7 +58,7 @@ public class KauppaTest {
         kauppa.maksa("1111");
 
         // nyt vaadimme myös toisen parametrin arvon olevan oikea
-        verify(mockPankki).maksa(eq("1111"), eq(1120), anyInt());
+        verify(mockPankki).maksa(eq("1111"), eq(10), anyInt());
     }
 
     @Test
@@ -79,7 +79,7 @@ public class KauppaTest {
 
         // nyt kaksi ensimmäistä parametria saa olla arvoiltaan mitä sattuu
         // kolmannen on oltava sama mikä mock-olion määriteltiin palauttavan
-        verify(mockPankki).maksa(anyString(), anyInt(), eq(515));
+        verify(mockPankki).maksa(anyString(), anyInt(), eq(55));
     }
 
     @Test
