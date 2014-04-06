@@ -112,4 +112,19 @@ public class KauppaTest {
         verify(pankki).tilisiirto("pekka", 42, "12345", "33333-44455", 5);
     }
     
+    /*
+        varmistettava, että metodin aloitaAsiointi kutsuminen nollaa edellisen 
+        ostoksen tiedot (eli edellisen ostoksen hinta ei näy uuden ostoksen hinnassa), 
+        katso tarvittaessa apua projektin MockitoDemo testeistä!
+    */
+    
+    @Test
+    public void aloitaAsiointiNollaaSaldon() {
+        k.aloitaAsiointi();
+        k.lisaaKoriin(1);
+        k.aloitaAsiointi();
+        k.tilimaksu("pekka", "12345");
+        verify(pankki).tilisiirto("pekka", 42, "12345", "33333-44455", 0);
+    }
+    
 }
