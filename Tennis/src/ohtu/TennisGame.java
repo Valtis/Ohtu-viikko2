@@ -34,24 +34,31 @@ public class TennisGame {
     }
 
     public String getScore() {
-        
+
         if (isDeuce()) {
-            return "Deuce";
+            return getDeuceString();
         } else if (gameWon()) {
-           return "Win for " + getPlayerNameForAdvantageOrVictory();
-        }
-        else if (isAdvantage()) {
-            return getAdvantageOrWonString();
+            return getVictoryString();
+        } else if (isAdvantage()) {
+            return getAdvantageString();
         } else {
             return getScoreString();
         }
+    }
+
+    private String getDeuceString() {
+        return "Deuce";
+    }
+
+    private String getVictoryString() {
+        return "Win for " + getPlayerNameForAdvantageOrVictory();
     }
 
     private boolean gameAtAdvantageOrWon() {
         return player1Score >= 4 || player2Score >= 4;
     }
 
-    private String getAdvantageOrWonString() {      
+    private String getAdvantageString() {
         return "Advantage " + getPlayerNameForAdvantageOrVictory();
     }
 
@@ -72,7 +79,7 @@ public class TennisGame {
     }
 
     private boolean isAdvantage() {
-       return Math.abs(player1Score - player2Score) == 1 && scoresHighEnoughToAllowVictory();
+        return Math.abs(player1Score - player2Score) == 1 && scoresHighEnoughToAllowVictory();
     }
 
     private String getPlayerNameForAdvantageOrVictory() {
@@ -83,7 +90,7 @@ public class TennisGame {
     }
 
     private boolean gameWon() {
-        return Math.abs(player1Score - player2Score) >= 2  && scoresHighEnoughToAllowVictory();
+        return Math.abs(player1Score - player2Score) >= 2 && scoresHighEnoughToAllowVictory();
     }
 
     private boolean scoresHighEnoughToAllowVictory() {
