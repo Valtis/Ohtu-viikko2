@@ -27,7 +27,10 @@ public class IntJoukko {
     }
 
     public boolean lisaa(int luku) {
-            
+        
+        if (!kuuluu(luku)) {
+            luvut.add(luku);
+        }
   
         int eiOle = 0;
         if (alkioidenLkm == 0) {
