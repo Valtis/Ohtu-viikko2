@@ -39,7 +39,11 @@ public class Tapahtumankuuntelija implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent ae) {
-        
+        suoritaKomento(ae);
+        paivitaKentat();
+    }
+
+    private void suoritaKomento(ActionEvent ae) {
         KomentoTyyppi tyyppi = komennot.get(ae.getSource());
         if (tyyppi != null) {
             Komento komento = KomentoTehdas.luo(tyyppi, sovellus, syotekentta);
@@ -51,7 +55,9 @@ public class Tapahtumankuuntelija implements ActionListener {
             Komento k = suoritetutKomennot.pop();
             k.peru();
         }
-        
+    }
+
+    private void paivitaKentat() {
         int laskunTulos = sovellus.tulos();
          
         syotekentta.setText("");
@@ -59,7 +65,6 @@ public class Tapahtumankuuntelija implements ActionListener {
         
         nollaa.setEnabled(laskunTulos != 0);
         undo.setEnabled(suoritetutKomennot.size() > 0);
-        
     }
  
 }
