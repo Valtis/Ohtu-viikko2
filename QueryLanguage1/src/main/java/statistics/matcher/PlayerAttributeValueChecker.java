@@ -6,7 +6,7 @@ import statistics.Player;
 import statistics.matchStrategy.MatchingStrategy;
 
 
-abstract class PlayerAttributeValueChecker implements Matcher {
+class PlayerAttributeValueChecker implements Matcher {
    
     private int value;
     private String fieldName;

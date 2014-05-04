@@ -5,7 +5,7 @@ import statistics.CompositeMatchStrategy.CompositeMatchingStrategy;
 import statistics.Player;
 
 
-public abstract class CompositeBase implements Matcher {
+class CompositeBase implements Matcher {
 
     private Matcher[] matchers;
     CompositeMatchingStrategy strategy;
