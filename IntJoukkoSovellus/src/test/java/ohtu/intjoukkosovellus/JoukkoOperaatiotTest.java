@@ -10,17 +10,23 @@ public class JoukkoOperaatiotTest {
     
     
     @Test
-    public void testSomething() {
+    public void yhdisteToimii() {
         IntJoukko eka = teeJoukko(1,2);
         IntJoukko toka = teeJoukko(3,4);
         
         IntJoukko tulos = IntJoukko.yhdiste(eka, toka);
-        int[] vastauksenLuvut = tulos.toIntArray();
-        Arrays.sort(vastauksenLuvut);
         
-        int[] odotettu = {1,2,3,4};
+        assertEquals(teeJoukko(1, 2, 3, 4), tulos);        
+    } 
+    
+     @Test
+    public void yhdisteessaEiDuplikaatteja() {
+        IntJoukko eka = teeJoukko(1,2, 3);
+        IntJoukko toka = teeJoukko(3,4);
         
-        assertArrayEquals(odotettu, vastauksenLuvut);        
+        IntJoukko tulos = IntJoukko.yhdiste(eka, toka);
+        
+        assertEquals(teeJoukko(1, 2, 3, 4), tulos);       
     } 
 
     private IntJoukko teeJoukko(int... luvut) {

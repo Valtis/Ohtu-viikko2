@@ -109,8 +109,18 @@ public class IntJoukko {
         return rakentaja.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || o.getClass() != this.getClass()) {
+            return false;
+        }
+        
+        IntJoukko toinenJoukko = (IntJoukko)o;
+        return o.equals(this);
+    }
+
     public int[] toIntArray() {
-        int [] arr = new int[luvut.size()];
+        int[] arr = new int[luvut.size()];
         int paikka = 0;
         for (int luku : luvut) {
             arr[paikka++] = luku;
