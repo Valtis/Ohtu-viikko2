@@ -1,6 +1,9 @@
 
 package ohtu.intjoukkosovellus;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class IntJoukko {
 
     public final static int KAPASITEETTI = 5, // aloitustalukon koko
@@ -9,8 +12,12 @@ public class IntJoukko {
     private int kasvatuskoko;     // Uusi taulukko on tämän verran vanhaa suurempi.
     private int[] ljono;      // Joukon luvut säilytetään taulukon alkupäässä. 
     private int alkioidenLkm;    // Tyhjässä joukossa alkioiden_määrä on nolla. 
+    
+    private List<Integer> luvut;
 
     public IntJoukko() {
+        luvut = new ArrayList<Integer>();
+        
         ljono = new int[KAPASITEETTI];
         for (int i = 0; i < ljono.length; i++) {
             ljono[i] = 0;
@@ -19,38 +26,9 @@ public class IntJoukko {
         this.kasvatuskoko = OLETUSKASVATUS;
     }
 
-    public IntJoukko(int kapasiteetti) {
-        if (kapasiteetti < 0) {
-            return;
-        }
-        ljono = new int[kapasiteetti];
-        for (int i = 0; i < ljono.length; i++) {
-            ljono[i] = 0;
-        }
-        alkioidenLkm = 0;
-        this.kasvatuskoko = OLETUSKASVATUS;
-
-    }
-    
-    
-    public IntJoukko(int kapasiteetti, int kasvatuskoko) {
-        if (kapasiteetti < 0) {
-            throw new IndexOutOfBoundsException("Kapasitteetti väärin");//heitin vaan jotain :D
-        }
-        if (kasvatuskoko < 0) {
-            throw new IndexOutOfBoundsException("kapasiteetti2");//heitin vaan jotain :D
-        }
-        ljono = new int[kapasiteetti];
-        for (int i = 0; i < ljono.length; i++) {
-            ljono[i] = 0;
-        }
-        alkioidenLkm = 0;
-        this.kasvatuskoko = kasvatuskoko;
-
-    }
-
     public boolean lisaa(int luku) {
-
+            
+  
         int eiOle = 0;
         if (alkioidenLkm == 0) {
             ljono[0] = luku;
