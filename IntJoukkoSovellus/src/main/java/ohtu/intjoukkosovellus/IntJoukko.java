@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class IntJoukko {
 
-    private Set<Integer> luvut;
+    private final Set<Integer> luvut;
 
     public IntJoukko() {
         luvut = new LinkedHashSet<Integer>();
