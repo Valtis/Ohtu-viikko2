@@ -1,23 +1,9 @@
 package statistics.matcher;
 
-import statistics.Player;
+import statistics.CompositeMatchStrategy.AndStrategy;
 
-public class And implements Matcher {
-
-    private Matcher[] matchers;
-
-    public And(Matcher... matchers) {
-        this.matchers = matchers;
-    }
-
-    @Override
-    public boolean matches(Player p) {
-        for (Matcher matcher : matchers) {
-            if (!matcher.matches(p)) {
-                return false;
-            }
-        }
-
-        return true;
+public class And extends CompositeBase {
+    public And(Matcher ...matchers) {
+        super(new AndStrategy(), matchers);
     }
 }
