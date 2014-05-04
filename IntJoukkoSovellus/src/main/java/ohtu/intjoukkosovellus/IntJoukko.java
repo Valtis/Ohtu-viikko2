@@ -27,8 +27,8 @@ public class IntJoukko {
     }
 
     public boolean lisaa(int luku) {
-        
-        if (!kuuluu(luku)) {
+        boolean kuuluu = kuuluu(luku);
+        if (!kuuluu) {
             luvut.add(luku);
         }
   
@@ -39,7 +39,7 @@ public class IntJoukko {
             return true;
         } else {
         }
-        if (!kuuluu(luku)) {
+        if (!kuuluu) {
             ljono[alkioidenLkm] = luku;
             alkioidenLkm++;
             if (alkioidenLkm % ljono.length == 0) {
