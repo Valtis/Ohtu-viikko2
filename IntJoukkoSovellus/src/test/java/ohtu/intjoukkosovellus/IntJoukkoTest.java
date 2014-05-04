@@ -42,21 +42,7 @@ public class IntJoukkoTest {
         assertFalse(joukko.kuuluu(3));
         assertEquals(1, joukko.koko());
     }
-    
-    @Test
-    public void palautetaanOikeaTaulukko() {
-        int[] odotettu = {3, 55, 99};
         
-        joukko.lisaa(55);
-        joukko.poista(10);
-        joukko.lisaa(99);
-
-        int[] vastaus = joukko.toIntArray();
-        Arrays.sort(vastaus);
-        assertArrayEquals(odotettu, vastaus);
-    }
-    
-    
     @Test
     public void toimiiKasvatuksenJalkeen(){
         int[] lisattavat = {1,2,4,5,6,7,8,9,11,12,13,14};
