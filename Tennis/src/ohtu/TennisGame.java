@@ -6,7 +6,6 @@ import java.util.Map;
 public class TennisGame {
 
     Map<Integer, String> scoreNames;
-    Map<String, Integer> playerScores;
 
     private int player1Score = 0;
     private int player2Score = 0;
@@ -14,15 +13,12 @@ public class TennisGame {
     private String player2Name;
 
     public TennisGame(String player1Name, String player2Name) {
-        playerScores = new HashMap<String, Integer>();
+ 
         scoreNames = new HashMap<Integer, String>();
         scoreNames.put(0, "Love");
         scoreNames.put(1, "Fifteen");
         scoreNames.put(2, "Thirty");
         scoreNames.put(3, "Forty");
-
-        playerScores.put(player1Name, 0);
-        playerScores.put(player2Name, 0);
 
         this.player1Name = player1Name;
         this.player2Name = player2Name;
@@ -30,14 +26,10 @@ public class TennisGame {
 
     public void wonPoint(String playerName) {
 
-        if (playerName.equals("player1")) {
+        if (playerName.equals(player1Name)) {
             player1Score += 1;
-        } else {
+        } else if (playerName.equals(player2Name)) {
             player2Score += 1;
-        }
-
-        if (playerScores.containsKey(playerName)) {
-            playerScores.put(playerName, playerScores.get(playerName) + 1);
         }
     }
 
