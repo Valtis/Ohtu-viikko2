@@ -1,8 +1,8 @@
 
 package ohtu.intjoukkosovellus;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class IntJoukko {
 
@@ -13,10 +13,10 @@ public class IntJoukko {
     private int[] ljono;      // Joukon luvut säilytetään taulukon alkupäässä. 
     private int alkioidenLkm;    // Tyhjässä joukossa alkioiden_määrä on nolla. 
     
-    private List<Integer> luvut;
+    private Set<Integer> luvut;
 
     public IntJoukko() {
-        luvut = new ArrayList<Integer>();
+        luvut = new HashSet<Integer>();
         
         ljono = new int[KAPASITEETTI];
         for (int i = 0; i < ljono.length; i++) {
@@ -28,9 +28,9 @@ public class IntJoukko {
 
     public boolean lisaa(int luku) {
         boolean kuuluu = kuuluu(luku);
-        if (!kuuluu) {
-            luvut.add(luku);
-        }
+        
+        luvut.add(luku);
+        
   
         int eiOle = 0;
         if (alkioidenLkm == 0) {
@@ -69,6 +69,8 @@ public class IntJoukko {
     }
 
     public boolean poista(int luku) {
+        luvut.remove(luku);
+        
         int kohta = -1;
         int apu;
         for (int i = 0; i < alkioidenLkm; i++) {
