@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class TennisGame {
        
-    
+    Map<Integer, String> scoreNames;
     Map<String, Integer> playerScores;
     
     private int player1Score = 0;
@@ -15,8 +15,18 @@ public class TennisGame {
 
     public TennisGame(String player1Name, String player2Name) {
         playerScores = new HashMap<String, Integer>();
+        scoreNames = new HashMap<Integer, String>();
+        scoreNames.put(0, "Love");
+        scoreNames.put(1, "Fifteen");
+        scoreNames.put(2, "Thirty");
+        scoreNames.put(3, "Forty");
+        
+        
+        
         playerScores.put(player1Name, 0);
         playerScores.put(player2Name, 0);
+        
+        
         
         
         this.player1Name = player1Name;
@@ -74,23 +84,10 @@ public class TennisGame {
             {
                 if (i==1) tempScore = player1Score;
                 else { score+="-"; tempScore = player2Score;}
-                switch(tempScore)
-                {
-                    case 0:
-                        score+="Love";
-                        break;
-                    case 1:
-                        score+="Fifteen";
-                        break;
-                    case 2:
-                        score+="Thirty";
-                        break;
-                    case 3:
-                        score+="Forty";
-                        break;
-                }
+                score += scoreNames.get(tempScore);
             }
         }
         return score;
     }
+
 }
