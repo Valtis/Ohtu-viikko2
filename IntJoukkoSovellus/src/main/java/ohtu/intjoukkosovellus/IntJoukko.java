@@ -116,7 +116,7 @@ public class IntJoukko {
         }
         
         IntJoukko toinenJoukko = (IntJoukko)o;
-        return o.equals(this);
+        return toinenJoukko.luvut.equals(this.luvut);
     }
 
     public int[] toIntArray() {

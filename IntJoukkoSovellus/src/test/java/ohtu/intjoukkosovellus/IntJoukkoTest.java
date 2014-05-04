@@ -82,4 +82,21 @@ public class IntJoukkoTest {
 
         assertEquals("{10, 3, 15, 40}", joukko.toString());
     }
+    
+    @Test 
+    public void equalsToimiiOikeinSamoille() {
+        IntJoukko toinenJoukko = new IntJoukko();
+        toinenJoukko.lisaa(10);
+        toinenJoukko.lisaa(3);
+        assertTrue(toinenJoukko.equals(joukko));
+    }
+    
+    
+    @Test 
+    public void equalsToimiiOikeinErille() {
+        IntJoukko toinenJoukko = new IntJoukko();
+        toinenJoukko.lisaa(30);
+        toinenJoukko.lisaa(3);
+        assertFalse(toinenJoukko.equals(joukko));
+    }
 }
