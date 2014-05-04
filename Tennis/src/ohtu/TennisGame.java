@@ -35,14 +35,18 @@ public class TennisGame {
 
     public String getScore() {
  
-        if ((player1Score >= 4 || player2Score >= 4) && player1Score != player2Score) {
-           return getDescriptionString();
+        if (gameAtAdvantageOrWon()) {
+           return getAdvantageOrWonString();
         } else {
             return getScoreString();
         }
     }
 
-    private String getDescriptionString() {
+    private boolean gameAtAdvantageOrWon() {
+        return (player1Score >= 4 || player2Score >= 4) && player1Score != player2Score;
+    }
+
+    private String getAdvantageOrWonString() {
         String score;
         int minusResult = player1Score - player2Score;
         if (minusResult == 1) {
@@ -59,19 +63,23 @@ public class TennisGame {
     
     
     private String getScoreString() {
-    
+            if (isDeuce()) {
+                return "Deuce";
+            }
+                
             String score = scoreNames.get(player1Score) + "-";
+           
             if (player1Score == player2Score) {
-                if (player1Score > 3) {
-                    return "Deuce";
-                }
-               
                 score += "All";
             } else {
                 score += scoreNames.get(player2Score);
             }
             
             return score;
+    }
+    
+    public boolean isDeuce() {
+        return player1Score == player2Score && player1Score > 3;
     }
 
 }
