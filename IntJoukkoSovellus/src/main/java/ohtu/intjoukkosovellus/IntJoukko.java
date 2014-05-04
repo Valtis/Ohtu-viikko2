@@ -114,8 +114,8 @@ public class IntJoukko {
         if (o == null || o.getClass() != this.getClass()) {
             return false;
         }
-        
-        IntJoukko toinenJoukko = (IntJoukko)o;
+
+        IntJoukko toinenJoukko = (IntJoukko) o;
         return toinenJoukko.luvut.equals(this.luvut);
     }
 
@@ -128,25 +128,21 @@ public class IntJoukko {
         return arr;
     }
 
-    public static IntJoukko yhdiste(IntJoukko a, IntJoukko b) {
-        IntJoukko ret = new IntJoukko();
-        ret.luvut.addAll(a.luvut);
-        ret.luvut.addAll(b.luvut);
-        return ret;
+    public static IntJoukko yhdiste(IntJoukko ensimmainen, IntJoukko toinen) {
+        IntJoukko uusi = new IntJoukko();
+        uusi.luvut.addAll(ensimmainen.luvut);
+        uusi.luvut.addAll(toinen.luvut);
+        return uusi;
     }
 
-    public static IntJoukko leikkaus(IntJoukko a, IntJoukko b) {
-        IntJoukko y = new IntJoukko();
-        int[] aTaulu = a.toIntArray();
-        int[] bTaulu = b.toIntArray();
-        for (int i = 0; i < aTaulu.length; i++) {
-            for (int j = 0; j < bTaulu.length; j++) {
-                if (aTaulu[i] == bTaulu[j]) {
-                    y.lisaa(bTaulu[j]);
-                }
+    public static IntJoukko leikkaus(IntJoukko ensimmainen, IntJoukko toinen) {
+        IntJoukko uusi = new IntJoukko();
+        for (int luku : ensimmainen.luvut) {
+            if (toinen.kuuluu(luku)) {
+                uusi.lisaa(luku);
             }
         }
-        return y;
+        return uusi;
 
     }
 
