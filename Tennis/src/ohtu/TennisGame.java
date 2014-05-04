@@ -42,34 +42,44 @@ public class TennisGame {
     }
 
     public String getScore() {
-        String score = "";
-
-        
+ 
         if ((player1Score >= 4 || player2Score >= 4) && player1Score != player2Score) {
-            int minusResult = player1Score - player2Score;
-            if (minusResult == 1) {
-                score = "Advantage player1";
-            } else if (minusResult == -1) {
-                score = "Advantage player2";
-            } else if (minusResult >= 2) {
-                score = "Win for player1";
-            } else {
-                score = "Win for player2";
-            }
+           return getDescriptionString();
         } else {
-            score = scoreNames.get(player1Score) + "-";
+            return getScoreString();
+        }
+    }
+
+    private String getDescriptionString() {
+        String score;
+        int minusResult = player1Score - player2Score;
+        if (minusResult == 1) {
+            score = "Advantage player1";
+        } else if (minusResult == -1) {
+            score = "Advantage player2";
+        } else if (minusResult >= 2) {
+            score = "Win for player1";
+        } else {
+            score = "Win for player2";
+        }
+        return score;
+    }
+    
+    
+    private String getScoreString() {
+    
+            String score = scoreNames.get(player1Score) + "-";
             if (player1Score == player2Score) {
                 if (player1Score > 3) {
                     return "Deuce";
                 }
-                
+               
                 score += "All";
             } else {
                 score += scoreNames.get(player2Score);
             }
-        }
-        
-        return score;
+            
+            return score;
     }
 
 }
