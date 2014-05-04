@@ -23,7 +23,6 @@ public class IntJoukko {
         return luvut.remove(luku);
     }
 
-
     public int koko() {
         return luvut.size();
     }
@@ -33,13 +32,14 @@ public class IntJoukko {
 
         StringBuilder rakentaja = new StringBuilder();
         rakentaja.append("{");
+        if (luvut.size() > 0) {
+            for (int luku : luvut) {
+                rakentaja.append(luku);
+                rakentaja.append(", ");
+            }
 
-        for (int luku : luvut) {
-            rakentaja.append(luku);
-            rakentaja.append(", ");
+            rakentaja.delete(rakentaja.length() - 2, rakentaja.length());
         }
-
-        rakentaja.delete(rakentaja.length() - 2, rakentaja.length());
         rakentaja.append("}");
 
         return rakentaja.toString();
@@ -63,10 +63,10 @@ public class IntJoukko {
     }
 
     public static IntJoukko leikkaus(IntJoukko ensimmainen, IntJoukko toinen) {
-         IntJoukko uusi = new IntJoukko();
-         uusi.luvut.addAll(ensimmainen.luvut);
-         uusi.luvut.retainAll(toinen.luvut);
-         return uusi;
+        IntJoukko uusi = new IntJoukko();
+        uusi.luvut.addAll(ensimmainen.luvut);
+        uusi.luvut.retainAll(toinen.luvut);
+        return uusi;
     }
 
     public static IntJoukko erotus(IntJoukko ensimmainen, IntJoukko toinen) {
