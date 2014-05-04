@@ -15,7 +15,7 @@ public class Tapahtumankuuntelija implements ActionListener {
 
     private final Map<JButton, KomentoTyyppi> komennot;
 
-    private JButton nollaa;
+    private final JButton nollaa;
     private final JButton undo;
     private final JTextField tuloskentta;
     private final JTextField syotekentta;
@@ -30,7 +30,6 @@ public class Tapahtumankuuntelija implements ActionListener {
         komennot.put(miinus, KomentoTyyppi.MIINUS);
         komennot.put(nollaa, KomentoTyyppi.NOLLAA);
         
-        
         this.nollaa = nollaa;
         this.undo = undo;
         this.tuloskentta = tuloskentta;
@@ -40,6 +39,7 @@ public class Tapahtumankuuntelija implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent ae) {
+        
         KomentoTyyppi tyyppi = komennot.get(ae.getSource());
         if (tyyppi != null) {
             Komento komento = KomentoTehdas.luo(tyyppi, sovellus, syotekentta);
@@ -56,17 +56,9 @@ public class Tapahtumankuuntelija implements ActionListener {
          
         syotekentta.setText("");
         tuloskentta.setText("" + laskunTulos);
-        if ( laskunTulos==0) {
-            nollaa.setEnabled(false);
-        } else {
-            nollaa.setEnabled(true);
-        }
         
-        if (suoritetutKomennot.size() > 0) {
-            undo.setEnabled(true);
-        } else {
-            undo.setEnabled(false);
-        }
+        nollaa.setEnabled(laskunTulos != 0);
+        undo.setEnabled(suoritetutKomennot.size() > 0);
         
     }
  
