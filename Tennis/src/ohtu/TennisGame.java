@@ -13,7 +13,7 @@ public class TennisGame {
     private String player2Name;
 
     public TennisGame(String player1Name, String player2Name) {
- 
+
         scoreNames = new HashMap<Integer, String>();
         scoreNames.put(0, "Love");
         scoreNames.put(1, "Fifteen");
@@ -34,9 +34,8 @@ public class TennisGame {
     }
 
     public String getScore() {
- 
         if (gameAtAdvantageOrWon()) {
-           return getAdvantageOrWonString();
+            return getAdvantageOrWonString();
         } else {
             return getScoreString();
         }
@@ -48,38 +47,45 @@ public class TennisGame {
 
     private String getAdvantageOrWonString() {
         String score;
-        int minusResult = player1Score - player2Score;
-        if (minusResult == 1) {
-            score = "Advantage player1";
-        } else if (minusResult == -1) {
-            score = "Advantage player2";
-        } else if (minusResult >= 2) {
-            score = "Win for player1";
+        
+        if (isAdvantage()) {
+            score = "Advantage ";
         } else {
-            score = "Win for player2";
+            score = "Win for ";
         }
+        
+        return score + getPlayerNameForAdvantageOrVictory();
+    }
+
+    private String getScoreString() {
+        if (isDeuce()) {
+            return "Deuce";
+        }
+
+        String score = scoreNames.get(player1Score) + "-";
+
+        if (player1Score == player2Score) {
+            score += "All";
+        } else {
+            score += scoreNames.get(player2Score);
+        }
+
         return score;
     }
-    
-    
-    private String getScoreString() {
-            if (isDeuce()) {
-                return "Deuce";
-            }
-                
-            String score = scoreNames.get(player1Score) + "-";
-           
-            if (player1Score == player2Score) {
-                score += "All";
-            } else {
-                score += scoreNames.get(player2Score);
-            }
-            
-            return score;
-    }
-    
+
     public boolean isDeuce() {
         return player1Score == player2Score && player1Score > 3;
+    }
+
+    private boolean isAdvantage() {
+       return Math.abs(player1Score - player2Score) == 1;
+    }
+
+    private String getPlayerNameForAdvantageOrVictory() {
+        if (player1Score > player2Score) {
+            return player1Name;
+        }
+        return player2Name;
     }
 
 }
