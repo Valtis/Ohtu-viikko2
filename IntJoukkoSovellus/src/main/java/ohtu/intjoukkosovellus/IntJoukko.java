@@ -91,8 +91,8 @@ public class IntJoukko {
 
     }
 
-    public int mahtavuus() {
-        return alkioidenLkm;
+    public int koko() {
+        return luvut.size();
     }
 
 
