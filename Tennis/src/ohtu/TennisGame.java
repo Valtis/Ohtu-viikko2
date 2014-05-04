@@ -34,7 +34,13 @@ public class TennisGame {
     }
 
     public String getScore() {
-        if (gameAtAdvantageOrWon()) {
+        
+        if (isDeuce()) {
+            return "Deuce";
+        } else if (gameWon()) {
+           return "Win for " + getPlayerNameForAdvantageOrVictory();
+        }
+        else if (isAdvantage()) {
             return getAdvantageOrWonString();
         } else {
             return getScoreString();
@@ -42,26 +48,14 @@ public class TennisGame {
     }
 
     private boolean gameAtAdvantageOrWon() {
-        return (player1Score >= 4 || player2Score >= 4) && player1Score != player2Score;
+        return player1Score >= 4 || player2Score >= 4;
     }
 
-    private String getAdvantageOrWonString() {
-        String score;
-        
-        if (isAdvantage()) {
-            score = "Advantage ";
-        } else {
-            score = "Win for ";
-        }
-        
-        return score + getPlayerNameForAdvantageOrVictory();
+    private String getAdvantageOrWonString() {      
+        return "Advantage " + getPlayerNameForAdvantageOrVictory();
     }
 
     private String getScoreString() {
-        if (isDeuce()) {
-            return "Deuce";
-        }
-
         String score = scoreNames.get(player1Score) + "-";
 
         if (player1Score == player2Score) {
@@ -74,11 +68,11 @@ public class TennisGame {
     }
 
     public boolean isDeuce() {
-        return player1Score == player2Score && player1Score > 3;
+        return player1Score == player2Score && scoresHighEnoughToAllowVictory();
     }
 
     private boolean isAdvantage() {
-       return Math.abs(player1Score - player2Score) == 1;
+       return Math.abs(player1Score - player2Score) == 1 && scoresHighEnoughToAllowVictory();
     }
 
     private String getPlayerNameForAdvantageOrVictory() {
@@ -88,4 +82,11 @@ public class TennisGame {
         return player2Name;
     }
 
+    private boolean gameWon() {
+        return Math.abs(player1Score - player2Score) >= 2  && scoresHighEnoughToAllowVictory();
+    }
+
+    private boolean scoresHighEnoughToAllowVictory() {
+        return Math.max(player1Score, player2Score) > 3;
+    }
 }
