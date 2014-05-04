@@ -1,7 +1,7 @@
 
 package ohtu.intjoukkosovellus;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class IntJoukko {
@@ -16,7 +16,7 @@ public class IntJoukko {
     private Set<Integer> luvut;
 
     public IntJoukko() {
-        luvut = new HashSet<Integer>();
+        luvut = new LinkedHashSet<Integer>();
         
         ljono = new int[KAPASITEETTI];
         for (int i = 0; i < ljono.length; i++) {
@@ -98,20 +98,21 @@ public class IntJoukko {
 
     @Override
     public String toString() {
-        if (alkioidenLkm == 0) {
-            return "{}";
-        } else if (alkioidenLkm == 1) {
-            return "{" + ljono[0] + "}";
-        } else {
-            String tuotos = "{";
-            for (int i = 0; i < alkioidenLkm - 1; i++) {
-                tuotos += ljono[i];
-                tuotos += ", ";
+        
+        
+        
+            StringBuilder rakentaja = new StringBuilder();
+            rakentaja.append("{");
+            
+            for (int luku : luvut) {
+                rakentaja.append(luku);
+                rakentaja.append(", ");
             }
-            tuotos += ljono[alkioidenLkm - 1];
-            tuotos += "}";
-            return tuotos;
-        }
+            
+            rakentaja.delete(rakentaja.length()-2, rakentaja.length());
+            rakentaja.append("}");
+            
+            return rakentaja.toString();
     }
 
     public int[] toIntArray() {

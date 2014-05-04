@@ -74,4 +74,12 @@ public class IntJoukkoTest {
     public void toStringToimii(){
         assertEquals("{10, 3}", joukko.toString());
     }
+    
+    @Test
+    public void toStringToimiiSuuremmallaJoukollaLukuja(){
+        joukko.lisaa(15);
+        joukko.lisaa(40);
+
+        assertEquals("{10, 3, 15, 40}", joukko.toString());
+    }
 }
