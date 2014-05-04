@@ -136,19 +136,17 @@ public class IntJoukko {
     }
 
     public static IntJoukko leikkaus(IntJoukko ensimmainen, IntJoukko toinen) {
-        IntJoukko uusi = new IntJoukko();
-        for (int luku : ensimmainen.luvut) {
-            if (toinen.kuuluu(luku)) {
-                uusi.lisaa(luku);
-            }
-        }
-        return uusi;
+        return leikkausErotusApuri(ensimmainen, toinen, true);
     }
 
     public static IntJoukko erotus(IntJoukko ensimmainen, IntJoukko toinen) {
+        return leikkausErotusApuri(ensimmainen, toinen, false);
+    }
+
+    private static IntJoukko leikkausErotusApuri(IntJoukko ensimmainen, IntJoukko toinen, boolean onLeikkaus) {
         IntJoukko uusi = new IntJoukko();
         for (int luku : ensimmainen.luvut) {
-            if (!toinen.kuuluu(luku)) {
+            if (toinen.kuuluu(luku) == onLeikkaus) {
                 uusi.lisaa(luku);
             }
         }
