@@ -1,4 +1,3 @@
-
 package ohtu.intjoukkosovellus;
 
 import java.util.LinkedHashSet;
@@ -7,17 +6,17 @@ import java.util.Set;
 public class IntJoukko {
 
     public final static int KAPASITEETTI = 5, // aloitustalukon koko
-                            OLETUSKASVATUS = 5;  // luotava uusi taulukko on 
+            OLETUSKASVATUS = 5;  // luotava uusi taulukko on 
     // näin paljon isompi kuin vanha
     private int kasvatuskoko;     // Uusi taulukko on tämän verran vanhaa suurempi.
     private int[] ljono;      // Joukon luvut säilytetään taulukon alkupäässä. 
     private int alkioidenLkm;    // Tyhjässä joukossa alkioiden_määrä on nolla. 
-    
+
     private Set<Integer> luvut;
 
     public IntJoukko() {
         luvut = new LinkedHashSet<Integer>();
-        
+
         ljono = new int[KAPASITEETTI];
         for (int i = 0; i < ljono.length; i++) {
             ljono[i] = 0;
@@ -28,10 +27,9 @@ public class IntJoukko {
 
     public boolean lisaa(int luku) {
         boolean kuuluu = kuuluu(luku);
-        
+
         luvut.add(luku);
-        
-  
+
         int eiOle = 0;
         if (alkioidenLkm == 0) {
             ljono[0] = luku;
@@ -60,7 +58,7 @@ public class IntJoukko {
 
     public boolean poista(int luku) {
         luvut.remove(luku);
-        
+
         int kohta = -1;
         int apu;
         for (int i = 0; i < alkioidenLkm; i++) {
@@ -80,7 +78,6 @@ public class IntJoukko {
             return true;
         }
 
-
         return false;
     }
 
@@ -95,34 +92,31 @@ public class IntJoukko {
         return luvut.size();
     }
 
-
     @Override
     public String toString() {
-        
-        
-        
-            StringBuilder rakentaja = new StringBuilder();
-            rakentaja.append("{");
-            
-            for (int luku : luvut) {
-                rakentaja.append(luku);
-                rakentaja.append(", ");
-            }
-            
-            rakentaja.delete(rakentaja.length()-2, rakentaja.length());
-            rakentaja.append("}");
-            
-            return rakentaja.toString();
+
+        StringBuilder rakentaja = new StringBuilder();
+        rakentaja.append("{");
+
+        for (int luku : luvut) {
+            rakentaja.append(luku);
+            rakentaja.append(", ");
+        }
+
+        rakentaja.delete(rakentaja.length() - 2, rakentaja.length());
+        rakentaja.append("}");
+
+        return rakentaja.toString();
     }
 
     public int[] toIntArray() {
-        int[] taulu = new int[alkioidenLkm];
-        for (int i = 0; i < taulu.length; i++) {
-            taulu[i] = ljono[i];
+        int [] arr = new int[luvut.size()];
+        int paikka = 0;
+        for (int luku : luvut) {
+            arr[paikka++] = luku;
         }
-        return taulu;
+        return arr;
     }
-   
 
     public static IntJoukko yhdiste(IntJoukko a, IntJoukko b) {
         IntJoukko x = new IntJoukko();
@@ -151,8 +145,8 @@ public class IntJoukko {
         return y;
 
     }
-    
-    public static IntJoukko erotus ( IntJoukko a, IntJoukko b) {
+
+    public static IntJoukko erotus(IntJoukko a, IntJoukko b) {
         IntJoukko z = new IntJoukko();
         int[] aTaulu = a.toIntArray();
         int[] bTaulu = b.toIntArray();
@@ -162,8 +156,8 @@ public class IntJoukko {
         for (int i = 0; i < bTaulu.length; i++) {
             z.poista(i);
         }
- 
+
         return z;
     }
-        
+
 }
