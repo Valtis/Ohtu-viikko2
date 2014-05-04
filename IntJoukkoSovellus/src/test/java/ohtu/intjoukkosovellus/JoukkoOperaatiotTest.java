@@ -38,6 +38,16 @@ public class JoukkoOperaatiotTest {
         
         assertEquals(teeJoukko(3, 4), tulos);        
     } 
+    
+    @Test
+    public void erotusToimii() {
+        IntJoukko eka = teeJoukko(1,2,3, 4, 5, 6);
+        IntJoukko toka = teeJoukko(3,4,9, 10);
+        
+        IntJoukko tulos = IntJoukko.erotus(eka, toka);
+        
+        assertEquals(teeJoukko(1, 2, 5, 6), tulos);        
+    } 
 
     private IntJoukko teeJoukko(int... luvut) {
         IntJoukko joukko = new IntJoukko();

@@ -143,21 +143,16 @@ public class IntJoukko {
             }
         }
         return uusi;
-
     }
 
-    public static IntJoukko erotus(IntJoukko a, IntJoukko b) {
-        IntJoukko z = new IntJoukko();
-        int[] aTaulu = a.toIntArray();
-        int[] bTaulu = b.toIntArray();
-        for (int i = 0; i < aTaulu.length; i++) {
-            z.lisaa(aTaulu[i]);
+    public static IntJoukko erotus(IntJoukko ensimmainen, IntJoukko toinen) {
+        IntJoukko uusi = new IntJoukko();
+        for (int luku : ensimmainen.luvut) {
+            if (!toinen.kuuluu(luku)) {
+                uusi.lisaa(luku);
+            }
         }
-        for (int i = 0; i < bTaulu.length; i++) {
-            z.poista(i);
-        }
-
-        return z;
+        return uusi;
     }
 
 }
